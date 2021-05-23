@@ -93,4 +93,6 @@ def search(request):
 		message = f"{search_term}"
 
 		return render(request,'accounts/search.html',{"message":message,"profiles":profiles})
-	
+	else:
+		message = "You haven't searched for any item"
+		return render(request,'accounts/search.html',{"message":message})
