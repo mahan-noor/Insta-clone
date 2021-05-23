@@ -81,3 +81,16 @@ def updateProfile(request):
 
 	return render(request,'accounts/update_profile.html',{"form":form,"title":title})
 
+
+@login_required(login_url='/accounts/login/')
+def search(request):
+	'''
+	Method that searches for users based on their profiles
+	'''
+	if request.GET['search']:
+		search_term = request.GET.get("search")
+		profiles = Profile.objects.filter(user__username__icontains = search_term)
+		message = f"{search_term}"
+
+		return render(request,'accounts/search.html',{"message":message,"profiles":profiles})
+	
