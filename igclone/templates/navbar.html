@@ -1,0 +1,55 @@
+{% load static %}
+{% load bootstrap4 %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <nav class="navbar nav-inverse">
+            <!-- My Insta Icons on the left -->
+            <span class="navbar-left">
+                <a href="{% url 'insta-home' %}" style="color: black"> 
+                    <i class="fab fa-instagram fa-4x "></i>
+                    <!-- <div class="vr"></div> -->
+                    <img src="{% static 'img/brand.png' %}" class="icon">
+                </a>
+            </span>
+
+            <!-- Adding a search form -->
+
+            <span class="col-sm-4 col-md-4 ">
+                <form class="navbar-form" role="search" action="">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search User" name="">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" type="submit">
+
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </span>
+            <!-- search form end -->
+
+            <!-- insta icons to the right -->
+            
+            <span class="pull-right">
+                {% if user.is_authenticated %}
+                <i class="far fa-compass fa-4x mr-5"></i>
+                <i class="far fa-heart fa-4x mr-5"></i>
+                <a href="{% url 'display_profile' %}" class="nav-item-nav-link mr-5" style="color: black">
+                <i class="far fa-user fa-4x"></i>
+            </a>
+                {% else %}
+                <a href="{% url 'login' %}" class="nav-item-nav-link">Login</a>
+                <a href="{% url 'register' %}" class="nav-item-nav-link">SignUp</a>
+                {% endif %}
+            </span>
+    </nav>
+</body>
+
+</html
