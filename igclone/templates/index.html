@@ -1,39 +1,35 @@
 {%extends 'base.html'%} {% block content%}
 <div class="container">
-  <div class="row">
-    {% if user.is_authenticated %} {%if images%} {% for image in images%}
-      <div class="card card-default">
-        <div class="card-heading inline" style="background-color: white">
-          <div class="row">
-            <div class="col mt-2 mb-2 text-center">
-              <a href="{%url 'profile' image.profile.id%}"
-                ><img
-                  class="img-responsive rounded-circle"
-                  src="{{image.user_profile.profile_pic.url}}"
-                  alt=""
-                  style="width: 35px; height: 35px"
-              /></a>
-            </div>
-            <div class="col mt-2 mb-2" style="padding-top: 11px">
-              <a href="{%url 'profile' image.profile.id%}"
-                >{{image.profile.username}}</a
-              >
-            </div>
-          </div>
-        </div>
-        <div class="card-title">
-          <div class="hovereffect" style="height: 245px">
-            <a href="{% url 'single' image.id %}">
-              <img
-                class="img-responsive"
-                src="{{image.image.url}}"
-                alt=""
-                style="height: 250px"
-              />
-            </a>
-          </div>
-        </div>
+  {% if user.is_authenticated %} {%if images%} {% for image in images%}
+  <div class="card card-default">
+    <div class="card-heading inline" style="background-color: white">
+      <div class="col mt-2 mb-2 text-center">
+        <a href="{%url 'profile' image.profile.id%}"
+          ><img
+            class="img-responsive rounded-circle"
+            src="{{image.user_profile.profile_pic.url}}"
+            alt=""
+            style="width: 35px; height: 35px"
+        /></a>
       </div>
-  
+      <div class="col mt-2 mb-2" style="padding-top: 11px">
+        <a href="{%url 'profile' image.profile.id%}"
+          >{{image.profile.username}}</a
+        >
+      </div>
+    </div>
+    <div class="card-title">
+      <div class="hovereffect" style="height: 245px">
+        <a href="{% url 'single' image.id %}">
+          <img
+            class="img-responsive"
+            src="{{image.image.url}}"
+            alt=""
+            style="height: 250px"
+          />
+        </a>
+      </div>
+    </div>
   </div>
 </div>
+{%endblock%}
