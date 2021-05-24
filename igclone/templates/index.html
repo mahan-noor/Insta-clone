@@ -30,6 +30,42 @@
         </a>
       </div>
     </div>
+    <div class="card-body">
+      <p></p>
+      <a href="{% url 'likePost' image.id %}">
+        {%if is_liked%}
+        <i class="fas fa-heart text-danger" style="font-size:25px;padding-left: 10px"></i>
+        {%else%}
+        <i class="far fa-heart text-danger" style="font-size:25px;padding-left: 10px"></i>
+        {%endif%}
+      </a>
+      <span style="font-size:25px;">{{image.likes.count}}</span>
+
+      <a class='info' href="{% url 'single' image.id %}">
+        {%if is_liked%}
+        <i class="fas fa-comment" style="font-size:25px;padding-left: 10px"></i>
+        {%else%}
+        <i class="far fa-comment" style="font-size:25px;padding-left: 10px"></i>
+        {%endif%}
+
+      </a>
+
+      <span style="font-size:25px;">{{image.comments.count}}</span>
+      </p>
+      </p>
+      <p><strong>{{image.profile.username}}</strong>: {{image.image_caption}}</p>
+
+
+    </div>
+    {%endfor%}
+		{%else%}
+		<h5 class="text-center">Oops! You havent posted any images yet. Get started by posting one <a
+				href="{% url 'create' %}">here</a></h5>
+		{%endif%}
+		{%else%}
+		<h5 class="text-center">Log in to view more images</h5>
+		{%endif%}
+    
   </div>
 </div>
 {%endblock%}
