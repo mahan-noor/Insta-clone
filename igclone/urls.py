@@ -6,6 +6,7 @@ urlpatterns=[
     re_path('accounts/profile/(\d+)',views.profile,name = 'profile'),
     path('accounts/create',views.create,name = 'create'),
     path('accounts/updateProfile',views.updateProfile,name = 'updateProfile'),
+    
 
 
 
