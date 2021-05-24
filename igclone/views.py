@@ -129,3 +129,39 @@ def search(request):
 	else:
 		message = "You haven't searched for any item"
 		return render(request,'accounts/search.html',{"message":message})
+
+
+@login_required(login_url='/accounts/login/')
+def likePost(request,image_id):
+	'''
+	Method that likes a post.
+	'''
+	image = Image.objects.get(pk = image_id)
+	
+	is_liked = False
+	if image.likes.filter(id = request.user.id).exists():
+		image.likes.remove(request.user)
+		is_liked = False
+	else:
+		image.likes.add(request.user)
+		is_liked = True
+	return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
+def follow(request,user_to):
+
+   '''
+	Method that enables a user to follow another user.
+	'''
+   user=User.objects.get(id=user_to)
+   
+   is_follow=False
+   if Follow.objects.filter(user_from=request.user,user_to = user).exists():
+       Follow.objects.filter(user_from=request.user,user_to = user).delete()
+       is_follow=False
+   else:
+       Follow(user_from=request.user,user_to = user).save()
+       is_follow=True
+  
+
+   return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
