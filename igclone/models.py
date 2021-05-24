@@ -4,5 +4,7 @@ from django.db import models
 
 class Profile(models.Model):
 	bio = models.CharField(max_length = 300,blank = True,default = 'Bio Will Appear Here')
-
 	
+
+	def __str__(self):
+		return self.user
