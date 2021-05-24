@@ -63,8 +63,8 @@ class Comment(models.Model):
 		return self.profile
 
 #Add the following field to User dynamically
-def get_first_name(self):
-    return self.first_name
+	def get_first_name(self):
+		return self.first_name
 
 class Follow(models.Model):
     user_from = models.ForeignKey(User,on_delete=models.CASCADE, related_name='rel_from_set')
