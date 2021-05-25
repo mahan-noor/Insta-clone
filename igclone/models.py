@@ -7,8 +7,11 @@ import datetime as dt
 class Profile(models.Model):
 	bio = models.CharField(max_length = 300,blank = True,default = 'Bio Will Appear Here')
 	user = models.ForeignKey(User, on_delete = models.CASCADE)
-	
+	profile_pic = models.ImageField(upload_to = 'profile/', blank = True,default = '../static/images/default.png')
 
+
+
+	
 	def __str__(self):
 		return self.user
 
@@ -24,6 +27,8 @@ class Image(models.Model):
 	profile = models.ForeignKey(User, on_delete=models.CASCADE)
 	user_profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
 	likes = models.ManyToManyField(User,related_name = 'likes', blank = True)
+	image = models.ImageField(upload_to = 'images/', blank = True)
+
 
 	@classmethod
 	def save_image(self):
