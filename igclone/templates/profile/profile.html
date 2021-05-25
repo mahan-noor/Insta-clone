@@ -1,94 +1,110 @@
 {%extends 'base.html'%}
-{% block content%}
-<div class="container">
-	{% if profile%}
+{% load bootstrap4 %}
+{% load static %}
+{% block content %}
+<div class="row" style="padding-top: 2rem;">
+  <div class="col-xs-12 col-md-3"></div>
+  <div class="col-xs-12 col-md-6">
+    {% if no_search %}
+    <p class="text-center" style="font-size: 2rem;">{{no_search}}</p>
+    {% else %}
+    {% if profile %}
+    <div id="profile">
+      <div class="d-flex">
+        <div class="pro">
+          <img class="user-img"
+            style="width:12rem; height:12rem;object-fit: cover; margin-right: 3rem; border-radius: 50%; "
+            src="{{profile.profile_pic.url}}" alt="">
+        </div>
+        <div class="profile" style="padding-top: 3rem;">
+          <h3 style="font-weight: 700;">{{profile.user.username}}</h3>
+          <em style="font-size: 1.2rem;">{{profile.bio}}</em>
+          {%if profile.user.username == request.user.username%}
+          {% else%}
+          {% if follow_form %}
+          <form action="/profile/{{profile.id}}" method="post" style="margin-top: 2rem;">
+            {%csrf_token%}
+            {% bootstrap_form follow_form%}
+            <input type="submit" class=" btn btn-primary" name="follow" value="Follow"
+              style="background-color: #003569 !important; padding: 6px 9px;">
+          </form>
+          {% endif %}
+          {% if unfollow_form %}
+          <form action="/profile/{{profile.id}}" method="post" style="margin-top: 2rem;">
+            {%csrf_token%}
+            {% bootstrap_form unfollow_form%}
+            <input type="submit" class=" btn btn-info" name="unfollow" value="Unfollow"
+              style="color: #003569 !important; padding: 6px 9px;">
+          </form>
+          {% endif %}
+          {% endif %}
+        </div>
+      </div>
+      <div class="d-flex" style="margin-top: 2rem;">
+        <div class='col-stats'>
+          <strong style="font-size: 1.4rem;">{{posts}}</strong>
+          <br />
+          <p style="font-size: 1.2rem;">posts</p>
+        </div>
+        <div class='col-stats'>
+          <strong style="font-size: 1.4rem;">{{profile.followers}}</strong>
+          <br />
+          <p style="font-size: 1.2rem;">followers</p>
+        </div>
+        <div class='col-stats'>
+          <strong style="font-size: 1.4rem;">{{profile.following}}</strong>
+          <br />
+          <p style="font-size: 1.2rem;">following</p>
+        </div>
+      </div>
+      <div class="row">
+        {% if images %}
+        {% for image in images %}
+        <div class="col-md-4 col-sm-4" style="object-fit: cover;">
+          <img src="{{image.image.url}}" alt="" style="width: 20rem; height: 20rem; object-fit: cover;">
+        </div>
+        {% endfor %}
+        {% endif %}
+      </div>
 
-	{%for profile in profile%}
-	<div class="row" style="padding-bottom:20px">
-
-		<div class="col-md-4">
-			<img class="center-block img-responsive rounded-circle" src="{{profile.profile_pic.url}}" alt=""
-				style="width:170px; height:170px">
-		</div>
-		<div class="col-md-8">
-			<h2><strong>{{profile.user}}</strong></h2>
-			<h4><strong>{{images|length}}</strong> Post{{images|pluralize}} <strong>{{followers}}</strong>
-				Follower{{followers|pluralize}} <strong>{{following}}</strong> Following</h4>
-			<h4>{{profile.bio}}</h4>
-			{%if profile.user.id == user.id%}
-			<a class="btn btn-sm btn-success" href="{% url 'create' %}">Create Post</a>
-			<a class="btn btn-sm btn-primary" href="{% url 'updateProfile' %}"> Update Profile</a>
-
-			{%else%}
-			{%if is_follow%}
-			<a href="{% url 'user_follow' profile.user.id %}" class="btn btn-danger">Unfollow</a>
-			{%else%}
-			<a href="{% url 'user_follow' profile.user.id %}" class="btn btn-success">Follow</a>
-			{%endif%}
-
-			{%endif%}
-		</div>
-
-	</div>
-
-	{%endfor%}
-	{%else%}
-
-	<div class="col-md-4">
-		<img class="center-block img-responsive img-circle" src="" alt=""
-			style="width:170px; height:170px">
-	</div>
-	<div class="col-md-8">
-		<h2><strong>{{user}}</strong></h2>
-		<h4><strong>0</strong> Post <strong>0</strong> Followers <strong>0</strong> Following</h4>
-
-		<a class="btn btn-sm btn-success" href="{% url 'create' %}">Create Post</a>
-		<a class="btn btn-sm btn-primary" href="{% url 'updateProfile' %}"> Update Profile</a>
-
-	</div>
-
+    </div>
+    {% else %}
+    <h5 style="font-size: 2rem;">No user with username "{{search}}"</h5>
+    {% endif %}
+    {% endif %}
+  </div>
+  <div class="col-xs-12 col-md-3"></div>
 </div>
-
-{%endif%}
-
-
-
-
-<hr>
-</div>
-
-<div class="container-fluid pl-10">
-	<div class="row">
-
-			{%if images%}
-			{% for image in images%}
-
-			<div class="col-md-4">
-
-				<div class="hovereffect thumbnail">
-					<a href="{% url 'single' image.id %}">
-						<img class="img-responsive" src="{{image.image.url}}" alt="" style="height: 200PX;">
-					</a>
-
-				</div>
-				<br>
-			</div>
-			
-		<br>
-
-			{%endfor%}
-			{%else%}
-			{%if profile.user.id == user.id%}
-
-			<h3 class="text-center">You havent posted any images yet. Get started by posting one <a
-					href="{% url 'create' %}">here</a></h3>
-			{%else%}
-			<h3 class="text-center">This user hasn't created any posts yet.</h3>
-
-			{%endif%}
-			{%endif%}
-
-		</div>
-	</div>
-</div>
-{%endblock%}
+<footer>
+  <div class="container">
+    <nav class="footer-nav">
+      <ul>
+        <li>
+          <a href="#">Jobs</a>
+        </li>
+        <li>
+          <a href="#">Privacy</a>
+        </li>
+        <li>
+          <a href="#">Terms</a>
+        </li>
+        <li>
+          <a href="#">Directory</a>
+        </li>
+        <li>
+          <a href="#">Profiles</a>
+        </li>
+        <li>
+          <a href="#">Hashtags</a>
+        </li>
+        <li>
+          <a href="#">Languages</a>
+        </li>
+      </ul>
+    </nav>
+    <div class="copyright-notice">
+      &copy; 2021 Instagram
+    </div>
+  </div>
+</footer>
+{% endblock %}
