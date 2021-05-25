@@ -1,56 +1,44 @@
-<nav class="navbar navbar-expand-lg navbar-dark blue-gradient">
-    <div class="container">
-  
-      <!-- Navbar brand -->
-      <a class="btn-floating btn-lg btn-ins" href="{% url 'index' %}">
-        <i class="fab fa-instagram text-white"> Instagram</i></a>
-  
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
-        aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+<div class="navigation">
+  <div class="logo">
+    <a href="{% url 'home' %}"><img
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/1200px-Instagram_logo.svg.png"
+        alt="logo" width="103"></a>
+  </div>
+  <form role="search" class="form-inline" action="{% url 'search' %}">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Search" aria-label="Username" aria-describedby="basic-addon1" name="user">
+      <div class="input-group-append" type="submit">
+        <button class="input-group-text btn" type="submit"><i class="fas fa-search"></i></button>
+      </div>
+    </div>
+  </form>
 
-      <div class="collapse navbar-collapse" id="basicExampleNav">
+  <div class="nav-icons">
+    <a href="/"><i class="fas fa-home"></i></a>
+    <a href="/upload/image"><i class="fas fa-share-alt"></i></i></a>
+    <a href="#" data-toggle="modal" data-target="#myModal">
+      <i class="fas fa-user"></i>
+    </a>
+  </div>
 
-        <ul class="navbar-nav mr-auto">
-          {% if user.is_authenticated %}
-          <li class="nav-item active">
-            <a class="nav-link" href="{% url 'index' %}"><i class="fas fa-home"></i>Home</a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="{% url 'profile' user.id%}"><i class="far fa-user-circle"></i>Profile</a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="/accounts/password/change"><i class="fas fa-key"></i>Change Password</a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="/logout"><i class="fas fa-sign-out-alt"></i>Logout</a>
-          </li>
+</div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm" role="document" style="position: fixed;top: 8%;right: 13%;">
+    <div class="modal-content" style="width: 180%;">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-left">
+        <ul>
+          <li><a href="/profile/{{request.user.id}}">Profile</a></li>
+          <li><a href="/upload/image">Upload Image</a></li>
+          <li><a href="/logout">Logout</a></li>
         </ul>
-      </div>  
-        {% else %}
-        <div class="collapse navbar-collapse" id="basicExampleNav"></div>
-          
-            <li class="nav-item active mt-3">
-              <a class="nav-link" href="/accounts/login"><i class="fas fa-sign-in-alt"></i>Login</a>
-            </li>
-            <li class="nav-item active mt-3">
-              <a class="nav-link" href="/accounts/register"><i class="fas fa-user-plus"></i>Sign Up</a>
-            </li>
-          
-        </div>
-  
-      {% endif %}
-  
-      <form class="navbar-form navbar-right form-inline md-form form-sm active-cyan-2" action="{% url 'search' %}">
-        <div class="form-group white-text">
-          <input type="text" class="form-control form-control-sm mr-3 w-75" placeholder="Search here" name="search"
-            aria-label="Search">
-  
-          <button type="submit"><i class="fas fa-search" aria-hidden="true"></i></i></button>
-        </div>
-      </form>
+      </div>
     </div>
-  
-    </div>
-  </nav>
+  </div>
+</div>
