@@ -8,6 +8,7 @@ urlpatterns=[
     re_path('accounts/profile/(\d+)',views.profile,name = 'profile'),
     path('accounts/create',views.create,name = 'create'),
     path('accounts/updateProfile',views.updateProfile,name = 'updateProfile'),
+    path('accounts/search',views.search,name = 'search'),
     re_path('accounts/single/(\d+)',views.single,name = 'single'),
     re_path('like/(\d+)',views.likePost,name= 'likePost'),
     re_path('follow/(\d+)',views.follow,name="user_follow"),
