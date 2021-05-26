@@ -6,7 +6,7 @@
 
 
 ### Author
- **[Ismahan Abey.](https://github.com/mahan-noor) 26/05/2021.**
+ **[Ismahan Abey.](https://github.com/mahan-noor) m**
 
 ## Description
 
