@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from .models import Image, Profile, Comment, Follow
 from .forms import CreateProfileForm,UploadImageForm, EditBioForm, FollowForm, UnfollowForm
 from django.http import HttpResponseRedirect, Http404
+from .email import send_signup_email
 from django.urls import reverse
 
 @login_required(login_url='/accounts/login/')
