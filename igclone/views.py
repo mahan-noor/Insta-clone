@@ -31,7 +31,7 @@ def email(request):
     return redirect(create_profile)
 
 @login_required(login_url='/accounts/login/')
-def inde(request):
+def index(request):
     title= "Instagram"
     current_user =request.user
     try:
@@ -148,7 +148,7 @@ def upload_image(request):
             image = form.save(commit=False)
             image.profile = profile
             image.save()
-        return redirect('index')
+        return redirect('home')
     else:
         form = UploadImageForm()
     return render(request, 'upload.html', {"form": form, "title": title})
@@ -232,6 +232,7 @@ def search(request):
         return render(request, 'profile/profile.html',{"no_search":no_search})
         
         
+        
 def comment(request, image_id):
     image = Image.objects.get(pk=image_id)
     content= request.GET.get("comment")
@@ -240,7 +241,7 @@ def comment(request, image_id):
     comment = Comment( image = image, content = content, user = user)
     comment.save_comment()
 
-    return redirect('index')
+    return redirect('home')
 
 def like_image(request,image_id):
     image = Image.objects.get(pk=image_id)
@@ -256,7 +257,7 @@ def like_image(request,image_id):
     else:
         image.likes.add(profile)
         liked = True
-    return HttpResponseRedirect(reverse('index'))
+    return HttpResponseRedirect(reverse('home'))
 
 def profile_edit(request):
     current_user = request.user
