@@ -11,6 +11,12 @@ html{
     box-sizing: border-box;
 }
 
+#content img{
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+}
+
 a{
     text-decoration: none;
 }
@@ -32,7 +38,6 @@ a{
 #content .container{
     width: 100%;
     max-width: 93.5rem;
-    align-items: center;
     margin: 3rem auto 0;
 }
 
@@ -45,6 +50,12 @@ a{
     display: flex;
     justify-content: center;
     padding: 0 auto;
+}
+.phone-app-demo{
+    height: 61.8rem;
+    background: url('../../static/images/phones.png') center no-repeat;
+    flex: 1;
+    margin-right: -100px;
 }
 
 .form-data{
@@ -89,7 +100,9 @@ a{
     text-align: center;
 
 }
-
+/* .form-data label{
+    display: none;
+} */
 
 .form-group .help-block{
     font-size: 1.2rem;

@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-
+import sys
 from pathlib import Path
 import os
 import cloudinary
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'igclone',
     'bootstrap4',
     'tinymce',
+    'crispy_forms',
     'cloudinary',
     'django.contrib.admin',
     'django.contrib.auth',

@@ -29,6 +29,6 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('logout/', auth_views.LogoutView.as_view()),  
     path('accounts/login', LoginView.as_view(redirect_field_name ='/',success_url = '/'), name = 'login'),
-    path('accounts/logout',LogoutView.as_view(redirect_field_name ='/accounts/login'))
+
 ]
 
