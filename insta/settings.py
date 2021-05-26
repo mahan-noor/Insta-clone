@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'igclone',
     'bootstrap4',
     'tinymce',
+    'cloudinary',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,6 +44,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+
+cloudinary.config( 
+  cloud_name = "ismahan", 
+  api_key = "626165648298845", 
+  api_secret = "uf8XtnXkokMs2kjn7Xl-fD0JFTY" 
+)
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

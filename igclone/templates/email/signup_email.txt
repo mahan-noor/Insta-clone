@@ -1,0 +1,3 @@
+Hello {{name}}
+
+Welcome to Instagram. Feel free to share your photos with the world.
