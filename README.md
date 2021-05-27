@@ -29,10 +29,6 @@ This is a web application that mimics the Instagram experience, built with Djang
 | Users can view upload of other users  | Click on an name of the user | Take the user to the users profile |
 | Users can post images | Click on Upload Image on the dropdown menu in the navbar | User will be able to upload an image |
 
-## Known Bugs
-* None currently.
-
-
 ## Technologies Used
 
 - Python 3.8
@@ -47,7 +43,7 @@ This is a web application that mimics the Instagram experience, built with Djang
 1. * Clone this repository using the git clone link:
     git clone https://github.com/mahan-noor/Insta-clone.git
 2. * Navigate to the directory:
-    cd Gallery
+    cd insta-clone
 3. * Open the directory created with your favorite IDE. If Atom type atom . if VSCode type code . . This will lauch the editor with the project setup,
 
 4. running the app
