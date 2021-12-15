@@ -6,11 +6,11 @@
 
 
 ### Author
- **[Ismahan Abey.](https://github.com/mahan-noor) m**
+ **[Ismahan Abey.](https://github.com/mahan-noor) **
 
 ## Description
 
-This is a web application that mimics the Instagram experience, built with Django.
+This is a web application that mimics the Instagram app, built with Django.
 
 ## Features
 * Users create an account.
@@ -44,13 +44,13 @@ This is a web application that mimics the Instagram experience, built with Djang
     git clone https://github.com/mahan-noor/Insta-clone.git
 2. * Navigate to the directory:
     cd insta-clone
-3. * Open the directory created with your favorite IDE. If Atom type atom . if VSCode type code . . This will lauch the editor with the project setup,
+3. * Open the directory using If Atom type atom . if VSCode type code . . This will lauch the editor with the project setup,
 
 4. running the app
-   * python3.8 manage.py server
+   * python manage.py runserver
 
 5. app in the browser
-   * http://127.0.0.1:5000/
+   * http://127.0.0.1:8000/
 
 
 ## Known bugs
